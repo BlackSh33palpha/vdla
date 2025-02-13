@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDLA</title>
+    <style>
+
+          /*Srcoll*/
+          html, body {
+            height: 150%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+            font-family: Arial, sans-serif;
+        }
+
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Styles for the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+        header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        header .buttons a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #555;
+            border-radius: 5px;
+        }
+        header .buttons a:hover {
+            background-color: #777;
+        }
+        /* Styles for the footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Main content styling */
+        .reports-section {
+            margin: 50px;
+        }
+        .reports-section h2 {
+            text-align: center;
+        }
+        .report-item {
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section -->
+    <header>
+        <div></div>
+        <h1>VDLA</h1>
+        <div class="buttons">
+            <a href="VDLA.html">VDLA</a>
+            <a href="Login.html">Logout</a>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <main>
+        <!-- Reports section -->
+       
+        <div class="report-item">
+            <h3>Car Model Analysis</h3>
+            <p id="carModelMessage"></p>
+            <p id="carDetails"></p>
+        </div>
+        <div class="report-item">
+            <h3>Mileage Analysis</h3>
+            <p id="mileageMessage"></p>
+        </div>
+        <div class="report-item">
+            <h3>Engine Litre Analysis</h3>
+            <p id="loeMessage"></p>
+        </div>
+        <div class="report-item">
+            <h3>Condition Analysis</h3>
+            <p id="conditionMessage"></p>
+        </div>
+        <div class="report-item">
+            <h3>Year of Production Analysis</h3>
+            <p id="yearMessage"></p>
+        </div>
+
+        <!-- Save Report Button -->
+        <button id="saveReport" onclick="saveReportAsText()">Save Report</button>
+    
+        <script>
+            window.onload = function () {
+                document.getElementById("carModelMessage").textContent =
+                    localStorage.getItem("carModelMessage") || "No data available.";
+                document.getElementById("carDetails").textContent =
+                    localStorage.getItem("carDetails") || "No additional details.";
+                document.getElementById("mileageMessage").textContent =
+                    localStorage.getItem("mileageMessage") || "No data available.";
+                document.getElementById("loeMessage").textContent =
+                    localStorage.getItem("loeMessage") || "No data available.";
+                document.getElementById("conditionMessage").textContent =
+                    localStorage.getItem("conditionMessage") || "No data available.";
+                document.getElementById("yearMessage").textContent =
+                    localStorage.getItem("yearMessage") || "No data available.";
+            };
+
+             // Save the report as a .txt file
+    function saveReportAsText() {
+        const carModelMessage = document.getElementById("carModelMessage").textContent;
+        const carDetails = document.getElementById("carDetails").textContent;
+        const mileageMessage = document.getElementById("mileageMessage").textContent;
+        const loeMessage = document.getElementById("loeMessage").textContent;
+        const conditionMessage = document.getElementById("conditionMessage").textContent;
+        const yearMessage = document.getElementById("yearMessage").textContent;
+
+        // Compile the report
+        const reportContent = `
+Car Model Analysis:
+${carModelMessage}
+${carDetails}
+
+Mileage Analysis:
+${mileageMessage}
+
+Engine Litre Analysis:
+${loeMessage}
+
+Condition Analysis:
+${conditionMessage}
+
+Year of Production Analysis:
+${yearMessage}
+        `;
+
+        // Create a blob and download the file
+        const blob = new Blob([reportContent], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Vehicle_Report.txt";
+        link.click();
+    }
+        </script>
+    
+    
+
+    <!-- Footer section -->
+    <footer>
+        <a href="#contact">Contact Us</a>
+        <a href="#about">About Us</a>
+        <p>© 2024 BS3P. All rights reserved. | <a href="https://www.vdlaplcy.com/privacy-policy">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>

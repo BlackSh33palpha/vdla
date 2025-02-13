@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDLA</title>
+    <style>
+
+        /*Srcoll*/
+        html, body {
+            height: 150%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+            font-family: Arial, sans-serif;
+        }
+
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Styles for the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Centered title in the header */
+        header h1 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+        /* Container for the login and register buttons */
+        header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        /* Styles for the buttons in the header */
+        header .buttons a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #555;
+            border-radius: 5px;
+        }
+        /* Hover effect for the buttons */
+        header .buttons a:hover {
+            background-color: #777;
+        }
+        /* Styles for the footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Styles for the links in the footer */
+        footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        /* Hover effect for the footer links */
+        footer a:hover {
+            text-decoration: underline;
+        } 
+		
+			.button-container {
+				display: flex;
+				justify-content: space-around;
+				margin: 20px 0;
+				justify-content: center; /* Center horizontally */
+				margin: 50px 0; /* Increase the top margin to lower the buttons */
+   
+			}
+
+			.button-container button {
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				
+			}
+            
+            /* Centering form */
+            .input-form {
+                margin-top: 50px;
+                text-align: center; /* Center the form */
+            }
+        
+            .input-form label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        
+            .input-form input, .input-form select {
+                width: 200px;
+                padding: 10px;
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+        
+            .input-form select {
+                width: 220px; /* Slightly wider for dropdown */
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 90px;
+            }
+           .p{
+            justify-content: center;
+            }
+    </style>
+</head>
+	<body>
+
+		<!-- Header section -->
+				<header>
+					<!-- Placeholder div to push the title to the center -->
+					<div></div>
+					<!-- Centered title -->
+					<h1>VDLA</h1>
+					<!-- Login and Register buttons on the right -->
+                    <div class="buttons">
+                        <a href="cardiag.html">cardiag</a>
+                    </div>
+						
+					</div>
+				</header>
+
+		<!-- Main content area -->
+				<main>
+                    <form id="validationForm" action="C:\xampp\htdocs\vdlaSource\public" method="post" class="center-container">
+                        <!-- form fields go here -->
+					<!-- Four buttons lined side by side -->
+					<div class="button-container" style="display: flex; gap: 20px;">
+                        <!-- Toyota Image Button -->
+                        <img src="1.png" alt="Toyota" id="toyota" onclick="disableOtherImages(this)" style="cursor: pointer; width: 200px; height: auto;">
+                    
+                    </div>
+                    
+                  
+                     <!-- Input form section -->
+                        <div class="input-form">
+                            <label for="car-model">Car Model:</label>
+                            <select id="car-model" name="car-model">
+                                <option value="Camry">Camry</option>
+                                <option value="Mark X">Mark X</option>
+                                <option value="Vitz">Vitz</option>
+                                <option value="Allion">Allion</option>
+                                <option value="IST">IST</option>
+                                <option value="Corolla Axio">Corolla Axio</option>
+                                <option value="Vanguard">Vanguard</option>
+                                <option value="Belta">Belta</option>
+                                <option value="Hilux">Hilux</option>
+                            </select>
+
+                            <br><br>
+
+                            <label for="year">Year of Production:</label>
+                            <select id="year" name="year">
+                                <option value="2000-2004">2000 - 2004</option>
+                                <option value="2005-2010">2005 - 2010</option>
+                                <option value="2011-2015">2011 - 2015</option>
+                                <option value="2016-2020">2016 - 2020</option>
+                                <option value="2021-2025">2021 - 2025</option>
+                            </select>
+
+                            <br><br>
+
+                            <label for="mileage">Mileage:</label>
+                            <input type="int" id="mileage" name="mileage" placeholder="Enter mileage" />
+
+                            <br><br>
+
+                            <label for="litre of engine">engine litre:</label>
+                            <input type="int" id="loe" name="loe" placeholder="Enter litre" />
+
+
+                            <br><br>
+
+                            <label for="condition">Condition:</label>
+                            <select id="condition" name="condition">
+                                <option value="new">New</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="used">Used</option>
+                            </select>
+                        </div>
+
+                        <br><br>
+                            <div class="button-container">
+                            <button type="submit">Submit</button>
+                            </div>
+                        </form>
+				</main>
+
+                <script>
+                    
+                    document.querySelector("form").addEventListener("submit", function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                
+                        // Collect form values
+                        const carModel = document.getElementById("car-model").value;
+                        const year = document.getElementById("year").value;
+                        const mileage = parseFloat(document.getElementById("mileage").value);
+                        const loe = parseFloat(document.getElementById("loe").value);
+                        const condition = document.getElementById("condition").value;
+                
+                        // Analyze car model with detailed description and problems
+                        let carModelMessage = "Toyota " + carModel;
+                        let carDetails = "";
+                        switch (carModel) {
+                            case "Camry":
+                                carDetails =
+                                    "A reliable and comfortable family sedan. Common issues include excessive oil consumption in older models and transmission problems after high mileage.";
+                                break;
+                            case "Mark X":
+                                carDetails =
+                                    "A sporty sedan with a smooth ride. Common problems include suspension wear and fuel pump faults in older models.";
+                                break;
+                            case "Vitz":
+                                carDetails =
+                                    "A compact, fuel-efficient city car. Common issues include engine carbon buildup and premature transmission wear.";
+                                break;
+                                case "Allion":
+                                carDetails =
+                                    "A stylish and practical mid-size sedan. Common issues include weak AC compressors and occasional CVT transmission problems.";
+                                break;
+                        
+                            case "IST":
+                                carDetails =
+                                    "A versatile subcompact hatchback designed for urban use. Common problems include engine misfires and dashboard electrical issues.";
+                                break;
+                        
+                            case "Corolla Axio":
+                                carDetails =
+                                    "A dependable and efficient compact sedan. Known issues include faulty oxygen sensors and occasional oil leaks.";
+                                break;
+                        
+                            case "Vanguard":
+                                carDetails =
+                                    "A spacious SUV offering excellent off-road capability. Common problems include noisy suspension and transmission faults in older models.";
+                                break;
+                        
+                            case "Belta":
+                                carDetails =
+                                    "A budget-friendly and compact sedan. Common issues include weak rear shock absorbers and problems with fuel efficiency sensors.";
+                                break;
+                        
+                            case "Hilux":
+                                carDetails =
+                                    "A rugged and reliable pickup truck built for tough terrains. Common issues include frame rust in older models and injector system failures.";
+                                break;
+                        
+                            default:
+                                carDetails = "No additional details available for the selected model.";
+                        }
+                
+                        // Mileage analysis with input value
+                        let mileageMessage = `Entered mileage: ${mileage} km. `;
+                        if (mileage <= 100000) {
+                            mileageMessage +=
+                                "Quarter of engine span used. With proper maintenance, you can expect approximately 300,000 km of life remaining.";
+                        } else if (mileage <= 200000) {
+                            mileageMessage +=
+                                "Half of engine span used. Regular maintenance and careful driving may give you up to 200,000 km of life remaining.";
+                        } else if (mileage <= 300000) {
+                            mileageMessage +=
+                                "Three-quarters of engine life used. Maintenance is highly recommended. Consult your local Toyota dealer for servicing, with an estimated 100,000 km remaining.";
+                        } else  {
+                            mileageMessage = "Maximum engine life reached. Consult a dealer for replacement.";
+                        }
+
+                        // Engine litre analysis with input value
+                        let loeMessage = `Entered engine size: ${loe} litres. `;
+                        if (loe >= 0 && loe <= 1.5) {
+                            loeMessage +=
+                                "This engine is economical and suitable for long-distance journeys. Ideal for low-maintenance operation.";
+                        } else if (loe > 1.5 && loe <= 2.5) {
+                            loeMessage +=
+                                "This engine offers a balance between performance and efficiency. Suitable for everyday use and moderate strain.";
+                        } else {
+                            loeMessage +=
+                                "A high-performance engine capable of handling heavy loads and extreme conditions. Requires frequent maintenance.";
+                        } 
+                
+                        // Condition analysis
+                        let conditionMessage = "";
+                        switch (condition) {
+                            case "new":
+                                conditionMessage = "Brand new car with no wear.";
+                                break;
+                            case "good":
+                                conditionMessage = "Minimal wear, still in excellent condition.";
+                                break;
+                            case "fair":
+                                conditionMessage = "Visible signs of wear, may require moderate repairs.";
+                                break;
+                            case "used":
+                                conditionMessage =
+                                    "Significant wear. Major repairs may be needed soon.";
+                                break;
+                        }
+                
+                        // Year analysis with reliability and spare parts description
+                        let yearMessage = `Year range: ${year}. `;
+                        switch (year) {
+                            case "2000-2004":
+                                yearMessage +=
+                                    "Reliability: Good with proper maintenance, but aging. Spare parts: Aftermarket options are common, though some may be hard to find.";
+                                break;
+                            case "2005-2010":
+                                yearMessage +=
+                                    "Reliability: Very durable. Spare parts: Widely available through Toyota dealerships and third-party suppliers.";
+                                break;
+                            case "2011-2015":
+                                yearMessage +=
+                                    "Reliability: Balanced with modern features. Spare parts: Readily available for most models and may be a little complex";
+                                break;
+                            case "2016-2020":
+                                yearMessage +=
+                                    "Reliability: High with advanced features. Spare parts: Easily accessible, though some components may be expensive and may be a little complex .";
+                                break;
+                            case "2021-2025":
+                                yearMessage +=
+                                    "Reliability: Top-tier reliability and technology. Spare parts: Widely available, though proprietary parts may cost more and may be a little complex.";
+                                break;
+                        }
+                
+                        // Store all data in localStorage
+                        localStorage.setItem("carModelMessage", carModelMessage);
+                        localStorage.setItem("carDetails", carDetails);
+                        localStorage.setItem("mileageMessage", mileageMessage);
+                        localStorage.setItem("loeMessage", loeMessage);
+                        localStorage.setItem("conditionMessage", conditionMessage);
+                        localStorage.setItem("yearMessage", yearMessage);
+                
+                        // Redirect to Report.html
+                        window.location.href = "Report.html";
+                    });
+
+                    
+                    document.querySelector("#loginForm").addEventListener("submit", async function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                
+                        // Gather form data
+                        const username = document.getElementById("username").value;
+                        const password = document.getElementById("password").value;
+                
+                        try {
+                            const response = await fetch("http://localhost:3000/login", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ username, password }),
+                            });
+                
+                            if (response.ok) {
+                                // Redirect to VDLA.html on successful login
+                                window.location.href = "VDLA.html";
+                            } else {
+                                const error = await response.text();
+                                alert("Error: " + error);
+                            }
+                        } catch (error) {
+                            console.error("Login error:", error);
+                            alert("An error occurred while logging in. Please try again.");
+                        }
+                    });
+                    
+                    document.getElementById("validationForm").addEventListener("submit", function (event) {
+                        // Get input values
+                        const mileage = document.getElementById("mileage").value.trim();
+                        const loe = document.getElementById("loe").value.trim();
+            
+                        // Error message elements
+                        const mileageError = document.getElementById("mileageError");
+                        const loeError = document.getElementById("loeError");
+            
+                        let isValid = true;
+            
+                        // Reset error messages
+                        mileageError.textContent = "";
+                        loeError.textContent = "";
+            
+                        // Validate Mileage (integer only)
+                        if (!/^\d+$/.test(mileage) || parseInt(mileage) <= 0) {
+                            mileageError.textContent = "Please enter a valid positive integer for mileage.";
+                            isValid = false;
+                        }
+            
+                        // Validate Engine Litre (integer only)
+                        if (!/^\d+$/.test(loe) || parseInt(loe) <= 0) {
+                            loeError.textContent = "Please enter a valid positive integer for engine litre.";
+                            isValid = false;
+                        }
+            
+                        // Prevent form submission if validation fails
+                        if (!isValid) {
+                            event.preventDefault();
+                        }
+                    });
+
+                </script>
+                
+                
+                
+
+		<!-- Footer section -->
+		<footer>
+			<a href="Contact Us.html">Contact Us</a>
+			<a href="About Us.html">About Us</a>
+			<p>© 2024 BS3P. All rights reserved. | <a href="https://www.vdlaplcy.com/privacy-policy">Privacy Policy (if you have one lol)</a></p>
+		</footer>
+		
+	</body>
+
+</html>

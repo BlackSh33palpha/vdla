@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDLA</title>
+    <style>
+        /* Scroll */
+        html, body {
+            height: 115%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+            font-family: Arial, sans-serif;
+        }
+
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        /* Styles for the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Centered title in the header */
+        header h1 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Container for the login and register buttons */
+        header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Styles for the buttons in the header */
+        header .buttons a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Hover effect for the buttons */
+        header .buttons a:hover {
+            background-color: #777;
+        }
+
+        /* Styles for the main content area */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            background-color: #f0f0f0;
+        }
+
+        /* Styles for the registration form */
+        .registrationForm {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        /* Styles for the form fields */
+        .registrationForm input,
+        .registrationForm select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Styles for the register button */
+        .registrationForm button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the register button */
+        .registration-form button:hover {
+            background-color: #555;
+        }
+
+        /* Styles for the footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Styles for the links in the footer */
+        footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        /* Hover effect for the footer links */
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section -->
+    <header>
+        <!-- Placeholder div to push the title to the center -->
+        <div></div>
+        <!-- Centered title -->
+        <h1>VDLA</h1>
+        <!-- Login and Register buttons on the right -->
+        <div class="buttons">
+
+            <a href="home page.html">Home</a>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <body>
+        <div class="container mt-5">
+            <h2>Register</h2>
+            <form id="registrationForm" action="http://localhost:3000/register" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Surname</label>
+                    <input type="text" class="form-control" id="surname" name="surname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            
+        </div>
+    
+        <script>
+            const bcrypt = require('bcrypt');
+            const db = require('./db');
+            
+            // Assuming you have request data for name, email, and password
+            const registerUser = (name, email, password) => {
+                bcrypt.hash(password, 10, (err, hash) => {
+                    if (err) throw err;
+            
+                    const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+                    db.query(query, [name, email, hash], (error, results) => {
+                        if (error) throw error;
+                        console.log('User registered:', results.insertId);
+                    });
+                });
+            };
+            
+            document.querySelector("#registrationForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // Prevent default form submission
+            
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+            
+                try {
+                    const response = await fetch("http://localhost:3000/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    });
+            
+                    if (response.ok) {
+                        // Redirect to Login.html upon successful registration
+                        window.location.href = "Login.html";
+                    } else {
+                        const error = await response.text();
+                        alert("Error: " + error);
+                    }
+                } catch (error) {
+                    console.error("Registration error:", error);
+                    alert("An error occurred during registration. Please try again.");
+                }
+            });
+            
+        </script>
+    
+    <!-- Footer section -->
+    <footer>
+        <a href="#contact">Contact Us</a>
+        <a href="#about">About Us</a>
+        <p>© 2024 BS3P. All rights reserved. | <a href="https://www.vdlaplcy.com/privacy-policy">Privacy Policy</a></p>
+    </footer>
+
+    
+</body>
+</html>

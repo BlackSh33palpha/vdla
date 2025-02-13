@@ -1,0 +1,187 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDLA</title>
+    <style>
+        
+    
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            background-color: #f4f4f4; /* Light background color */
+            font-family: Arial, sans-serif;
+        }
+
+        .center-text {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            max-width: 600px; /* Prevent the text from stretching too wide */
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /*Scroll*/
+        html, body {
+            height: 150%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+            font-family: Arial, sans-serif;
+        }
+
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Styles for the header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Centered title in the header */
+        header h1 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+        /* Container for the login and register buttons */
+        header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        /* Styles for the buttons in the header */
+        header .buttons a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #555;
+            border-radius: 5px;
+        }
+        /* Hover effect for the buttons */
+        header .buttons a:hover {
+            background-color: #777;
+        }
+        /* Styles for the footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Styles for the links in the footer */
+        footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        /* Hover effect for the footer links */
+        footer a:hover {
+            text-decoration: underline;
+        } 
+		
+			.button-container {
+				display: flex;
+				justify-content: space-around;
+				margin: 20px 0;
+				justify-content: center; /* Center horizontally */
+				margin: 50px 0; /* Increase the top margin to lower the buttons */
+   
+			}
+
+			.button-container button {
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				
+			}
+            
+           
+
+    </style>
+</head>
+	<body>
+
+		<!-- Header section -->
+				<header>
+					<!-- Placeholder div to push the title to the center -->
+					<div></div>
+					<!-- Centered title -->
+					<h1>VDLA</h1>
+					<!-- Login and Register buttons on the right -->
+					<div class="buttons">
+						<a href="Login.html">Login</a>
+						<a href="Regform.html">Register</a>
+					</div>
+				</header>
+
+		<!-- Main content area -->
+				<main>
+                    <div class="center-text">
+                        <p>🚗 <strong>Introducing VDLA – Your Ultimate Vehicle Analysis System!</strong> 🚗</p>
+                        <p>Tired of guessing your car's reliability and performance? VDLA provides quick, accurate insights on <strong>mileage</strong>, <strong>engine health</strong>, and <strong>car models</strong>. Whether you're buying, selling, or maintaining a vehicle, get data-driven results and detailed reports at your fingertips!</p>
+                        <p><strong>Know your car. Drive with confidence.</strong></p>
+                        <p>🔍 <em>Try VDLA today and make smarter decisions for your vehicle!</em> 🚀</p>
+                        <p>Version 6.0</p>
+                    </div>
+				</main>
+
+		<!-- Footer section -->
+		<footer>
+			<a href="#contact">Contact Us</a>
+			<a href="#about">About Us</a>
+			<p>© 2024 BS3P. All rights reserved. | <a href="https://www.vdlaplcy.com/privacy-policy">Privacy Policy (if you have one lol)</a></p>
+		</footer>
+		<script> 
+            
+                document.querySelector("#registrationForm").addEventListener("submit", async function (event) {
+                    event.preventDefault(); // Prevent default form submission
+            
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+            
+                    try {
+                        const response = await fetch("http://localhost:3000/register", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
+                        });
+            
+                        if (response.ok) {
+                            // Redirect to Login.html on success
+                            window.location.href = "Login.html";
+                        } else {
+                            const error = await response.text();
+                            alert("Error: " + error);
+                        }
+                    } catch (error) {
+                        console.error("Error submitting form:", error);
+                        alert("An error occurred. Please try again.");
+                    }
+                });
+          
+            
+        </script>
+	</body>
+
+</html>
